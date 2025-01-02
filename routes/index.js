@@ -85,8 +85,7 @@ router.post('/register', async function (req, res, next) {
       expires: new Date(
         Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
       ),
-      secure: true,
-      sameSite: "None"
+      // secure: true,
     }
 
     res.status(200).cookie("token", token, options).json({
@@ -97,6 +96,7 @@ router.post('/register', async function (req, res, next) {
     })
 
   } catch (error) {
+    console.log(error);
     res.status(500).json({
       status: false,
       msg: "User Not registered !!",
@@ -143,8 +143,6 @@ router.post('/login', async function (req, res, next) {
       expires: new Date(
         Date.now() + process.env.COOKIE_EXPIRE * 24 * 60 * 60 * 1000
       ),
-      secure: true,
-      sameSite: "None"
     }
 
     res.status(200).cookie("token", token, options).json({
@@ -156,7 +154,6 @@ router.post('/login', async function (req, res, next) {
 
 
   } catch (error) {
-    console.log(error)
     res.status(500).json({
       status: false,
       msg: "User Not logged in  !!",
@@ -169,8 +166,7 @@ router.get('/logout', authMiddleware, async function (req, res, next) {
   try {
     res.status(200).cookie("token", "",
       {
-        secure: true,
-        sameSite: "None"
+        // secure: true,
       }
     ).json({
       status: true,

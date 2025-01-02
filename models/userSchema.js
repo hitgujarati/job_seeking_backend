@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 var validator = require('validator');
-// const jwt = require("jsonwebtoken")
 
 const Schema = mongoose.Schema;
 
@@ -26,7 +25,6 @@ const userSchema = new Schema({
         required: [true, "please provide your password!"],
         minLength: [8, "password must contain at least 8 characters"],
         maxLength: [1024, "password can not exceed  1024 characters"],
-        // select: false
     },
     role: {
         type: String,

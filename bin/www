@@ -18,8 +18,12 @@ require('dotenv').config()
 var port = normalizePort(process.env.PORT || '8000');
 app.set('port', port);
 
-mongoose.connect(process.env.dbconnection)
-  .then(() => console.log(`Connected! and run at ${port}`));
+mongoose.connect(process.env.dbconnection, {
+  dbName: "jobseekingapp",
+}).then(() => console.log(`Connected! and run at ${port}`)
+).catch(err => {
+  console.log("some error while connecting database", err);
+});
 /**
  * Create HTTP server.
  */
